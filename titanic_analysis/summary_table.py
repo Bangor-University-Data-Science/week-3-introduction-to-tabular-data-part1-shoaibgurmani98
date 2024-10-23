@@ -8,13 +8,11 @@ def create_summary_table(df):
         'Missing Values': [df[col].isnull().sum() for col in df.columns],
     }
     
-    # Create summary DataFrame
+    # summary DataFrame
     summary_df = pd.DataFrame(summary_data)
     
     # Handle Missing Values
     summary_df['Has Missing Values?'] = summary_df['Missing Values'].apply(lambda x: 'Yes' if x > 0 else 'No')
-    
-    # Drop the 'Missing Values' column as it's no longer needed
     summary_df.drop(columns='Missing Values', inplace=True)
     
     return summary_df
